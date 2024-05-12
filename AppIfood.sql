@@ -1,3 +1,4 @@
+/* Criação de Tabelas */
 CREATE TABLE User (
     Id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     Date_created DATETIME,
@@ -157,3 +158,4 @@ CREATE TABLE Payment(
     Price INT NOT NULL,
     Date_Hour INT
 )
+/* Adicionando as Chaves Estrangeiras(FK) */
