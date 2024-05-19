@@ -158,4 +158,155 @@ CREATE TABLE Payment(
     Price INT NOT NULL,
     Date_Hour INT
 )
+
 /* Adicionando as Chaves Estrangeiras(FK) */
+
+ALTER TABLE Restaurant
+ADD COLUMN (Categ_Rest_Id) INT,
+ADD CONSTRAINT fk_category_restaurant
+FOREIGN KEY (Categ_Rest_Id)
+REFERENCES Category_Restaurant(Id);
+
+ALTER TABLE Operation
+ADD COLUMN (Restaurant_id) INT,
+ADD CONSTRAINT fk_restaurant
+FOREIGN KEY (Restaurant_id)
+REFERENCES Restaurant(Id);
+
+ALTER TABLE Address
+ADD COLUMN (Restaurant_id) INT,
+ADD CONSTRAINT fk_restaurant
+FOREIGN KEY (Restaurant_id)
+REFERENCES Restaurant(Id);
+
+ALTER TABLE Address
+ADD COLUMN (User_id) INT,
+ADD CONSTRAINT fk_user
+FOREIGN KEY (User_id)
+REFERENCES User(Id);
+
+ALTER TABLE Product
+ADD COLUMN (Restaurant_id) INT,
+ADD CONSTRAINT fk_restaurant
+FOREIGN KEY (Restaurant_id)
+REFERENCES Restaurant(Id);
+
+ALTER TABLE Product
+ADD COLUMN (Categ_Prod_id) INT,
+ADD CONSTRAINT fk_category_product
+FOREIGN KEY (Categ_Prod_id)
+REFERENCES Category_Product(Id);
+
+ALTER TABLE Delivery
+ADD COLUMN (Address_Id) INT,
+ADD CONSTRAINT fk_address
+FOREIGN KEY (Address_Id)
+REFERENCES Address(Id);
+
+ALTER TABLE Delivery
+ADD COLUMN (User_Id) INT,
+ADD CONSTRAINT fk_user
+FOREIGN KEY (User_Id)
+REFERENCES User(Id);
+
+ALTER TABLE Delivery
+ADD COLUMN (Restaurant_id) INT,
+ADD CONSTRAINT fk_restaurant
+FOREIGN KEY (Restaurant_id)
+REFERENCES Restaurant(Id);
+
+ALTER TABLE Delivery
+ADD COLUMN (Coupon_Id) INT,
+ADD CONSTRAINT fk_coupon
+FOREIGN KEY (Coupon_Id)
+REFERENCES Coupon(Id);
+
+ALTER TABLE Delivery
+ADD COLUMN (Status_Delivery_Id) INT,
+ADD CONSTRAINT fk_status
+FOREIGN KEY (Status_Delivery_Id)
+REFERENCES Status_Delivery(Id);
+
+ALTER TABLE Historic_Delivery
+ADD COLUMN (Status_Delivery_Id) INT,
+ADD CONSTRAINT fk_status
+FOREIGN KEY (Status_Delivery_Id)
+REFERENCES Status_Delivery(Id);
+
+ALTER TABLE Historic_Delivery
+ADD COLUMN (Delivery_Id) INT,
+ADD CONSTRAINT fk_Delivery
+FOREIGN KEY (Delivery_Id)
+REFERENCES Delivery(Id);
+
+ALTER TABLE Rating
+ADD COLUMN (Delivery_Id) INT,
+ADD CONSTRAINT fk_Delivery
+FOREIGN KEY (Delivery_Id)
+REFERENCES Delivery(Id);
+
+ALTER TABLE Product_Add
+ADD COLUMN (Additional_Id) INT,
+ADD CONSTRAINT fk_additional
+FOREIGN KEY (Additional_Id)
+REFERENCES Additional(Id);
+
+ALTER TABLE Product_Add
+ADD COLUMN (Product_Id) INT,
+ADD CONSTRAINT fk_product
+FOREIGN KEY (Product_Id)
+REFERENCES Product(Id);
+
+ALTER TABLE Favorite
+ADD COLUMN (User_Id) INT,
+ADD CONSTRAINT fk_user
+FOREIGN KEY (User_Id)
+REFERENCES User(Id);
+
+ALTER TABLE Favorite
+ADD COLUMN (Restaurant_Id) INT,
+ADD CONSTRAINT fk_restaurant
+FOREIGN KEY (Restaurant_Id)
+REFERENCES Restaurant(Id);
+
+ALTER TABLE Delivery_Product
+ADD COLUMN (Product_Id) INT,
+ADD CONSTRAINT fk_product
+FOREIGN KEY (Product_Id)
+REFERENCES Product(Id);
+
+ALTER TABLE Delivery_Product
+ADD COLUMN (Delivery_Id) INT,
+ADD CONSTRAINT fk_Delivery
+FOREIGN KEY (Delivery_Id)
+REFERENCES Delivery(Id);
+
+ALTER TABLE Add_Product_Delivery
+ADD COLUMN (Additional_Id) INT,
+ADD CONSTRAINT fk_additional
+FOREIGN KEY (Additional_Id)
+REFERENCES Additional(Id);
+
+ALTER TABLE Add_Product_Delivery
+ADD COLUMN (Delivery_Product_Id) INT,
+ADD CONSTRAINT fk_delivery_product
+FOREIGN KEY (Delivery_Product_Id)
+REFERENCES Delivery_Product(Id);
+
+ALTER TABLE Payment
+ADD COLUMN (Delivery_Id) INT,
+ADD CONSTRAINT fk_Delivery
+FOREIGN KEY (Delivery_Id)
+REFERENCES Delivery(Id);
+
+ALTER TABLE Payment
+ADD COLUMN (Payment_Method_Id) INT,
+ADD CONSTRAINT fk_payment_method
+FOREIGN KEY (Payment_Method_Id)
+REFERENCES Payment_Method(Id);
+
+ALTER TABLE Payment
+ADD COLUMN (Stats_Pay_Id) INT,
+ADD CONSTRAINT fk_stats_pay
+FOREIGN KEY (Stats_Pay_Id)
+REFERENCES Stats_Pay(Id);
